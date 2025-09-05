@@ -132,3 +132,76 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+class DrawerScreen extends StatelessWidget {
+  const DrawerScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // Set the background color to transparent
+      backgroundColor: Colors.transparent,
+      // Add a semi-transparent black overlay
+      body: Container(
+        color: Colors.black.withOpacity(0.5),
+        child: Row(
+          children: [
+            // The actual drawer content
+            Container(
+              width: MediaQuery.of(context).size.width * 0.75, // 75% of screen width
+              color: Colors.white,
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  const SizedBox(
+                    height: 120,
+                    child: DrawerHeader(
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                      ),
+                      child: Text(
+                        'Flutter Drawer',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.message),
+                    title: const Text('Messages'),
+                    onTap: () {
+                      // You would handle navigation or actions here
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.account_circle),
+                    title: const Text('Profile'),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.settings),
+                    title: const Text('Settings'),
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ),
+
+            // This expanded gesture detector closes the drawer when you tap outside of it
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  // This closes the FlutterActivity
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
